@@ -13,6 +13,10 @@ rl.question("Podaj swoje imie: ", (name) => {
                 surname: surname,
                 age: age
             }
+            fs.writeFileSync("data-logger/dane.json", JSON.stringify(daneWpisane))
+            const dane = fs.readFileSync("data-logger/dane.json", "utf8")
+            console.log("Odczytane dane: ", JSON.parse(dane))
+            rl.close()
         })
     })
 })
