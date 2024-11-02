@@ -26,6 +26,21 @@ function metoda_callback(a, b, operacja){
     }, 1000)
 }
 
+function metoda_promise(a, b, operacja){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (operacja === "1"){
+                resolve(a + b)
+            } 
+            else if (operacja === "2"){
+                resolve(a * b)
+            } else{
+                reject("błąd")
+            }
+        }, 1000)
+    })
+}
+
 rl.question("podaj pierwszą liczbę: ", (input_a) => {
     rl.question("podaj drugą liczbę: ", (input_b) => {
         const a = parseInt(input_a)
@@ -42,7 +57,11 @@ rl.question("podaj pierwszą liczbę: ", (input_a) => {
                     })
                 }
             else if (metoda === "2"){
-                rl.close()
+                metoda_promise(a, b, operacja).then((wynik) => {
+                    console.log(wynik)
+                }). catch((err)=>{
+                    console.error(err)
+                }).finally(rl.close())
             }
             })
         })
