@@ -31,13 +31,19 @@ rl.question("podaj pierwszą liczbę: ", (input_a) => {
         const a = parseInt(input_a)
         const b = parseInt(input_b)
         rl.question("Dodawanie - 1, Mnożenie - 2: ", (operacja) =>{
-        
-            metoda_callback(a, b, operacja, (err, wynik) =>{
-                if(err){
-                    console.error("błąd")
-                    return
+            rl.question("Callback - 1, Promise - 2: ", (metoda) =>{
+            if (metoda === "1"){
+                metoda_callback(a, b, operacja, (err, wynik) =>{
+                    if(err){
+                        console.error("błąd")
+                        return
+                    }
+                    console.log(wynik)
+                    })
                 }
-                console.log(wynik)
+            else if (metoda === "2"){
+                rl.close()
+            }
             })
         })
     })
