@@ -29,6 +29,11 @@ function metoda_callback(a, b, operacja){
 function metoda_promise(a, b, operacja){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
+            if (isNaN(a) || isNaN(b)) {
+                console.error("podano nieprawidłową liczbę")
+                rl.close()
+                return
+            }
             if (operacja === "1"){
                 resolve(a + b)
             } 
@@ -43,8 +48,8 @@ function metoda_promise(a, b, operacja){
 
 rl.question("podaj pierwszą liczbę: ", (input_a) => {
     rl.question("podaj drugą liczbę: ", (input_b) => {
-        const a = parseInt(input_a)
-        const b = parseInt(input_b)
+        const a = parseFloat(input_a)
+        const b = parseFloat(input_b)
         rl.question("Dodawanie - 1, Mnożenie - 2: ", (operacja) =>{
             rl.question("Callback - 1, Promise - 2: ", (metoda) =>{
             if (metoda === "1"){
