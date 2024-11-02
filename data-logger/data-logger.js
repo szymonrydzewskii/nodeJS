@@ -8,7 +8,11 @@ const rl = readline.createInterface({
 rl.question("Podaj swoje imie: ", (name) => {
     rl.question("Podaj swoje nazwisko: ", (surname) => {
         rl.question("Podaj swój wiek: ", (age) => {
-            
+            const daneWpisane = {
+                name: name,
+                surname: surname,
+                age: age
+            }
         })
     })
 })
