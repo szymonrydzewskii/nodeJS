@@ -1,7 +1,7 @@
 const fs = require("fs")
 const path = require("path")
 
-const logSciezka = path.join('./file-watcher', "plikWatcher.log");
+const logSciezka = path.join('./file-watcher', "plikWatcher.txt");
 
 function logEvent(tresc) {
     const logTresc = `${new Date().toString()}: ${tresc}\n`;
@@ -11,6 +11,9 @@ function logEvent(tresc) {
 
 fs.watch("./file-watcher", (eventType, filename) => {
     var event
+    if (filename === 'plikWatcher.txt'){
+        return
+    }
     if (eventType === "rename"){
         event = (`Dodano lub usunieto plik: ${filename}`)
         logEvent(event)
